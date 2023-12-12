@@ -11,8 +11,10 @@ def main():
     )
     args = parser.parse_args()
 
-    is_alphabets = [0 < (ord(letter.lower()) - 96) < 27 for letter in args.colname]
-    is_all_alphabets = sum(is_alphabets) == len(args.colname)
+    def is_alphabet(letter):
+       return  0 < (ord(letter.lower()) -96) < 27
+
+    is_all_alphabets = all([is_alphabet(letter) for letter in args.colname])
     if is_all_alphabets:
         print(
             sum(
